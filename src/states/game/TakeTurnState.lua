@@ -206,22 +206,10 @@ function TakeTurnState:victory()
 
                     -- level up if we've gone over the needed amount
                     if self.playerPokemon.currentExp > self.playerPokemon.expToLevel then
-                        local levelPlusOne = self.playerPokemon.level + 1
-                        local expToLevel = levelPlusOne * levelPlusOne * 5 * 0.75
-
-                        self.battleState.playerExpBar.max = expToLevel
-                        self.battleState.playerExpBar.value = 0
-
                         gStateStack:push(BattleMessageState(
                                 '' ..tostring(self.playerPokemon.name) .. ' Grew to Level ' .. tostring(self.playerPokemon.level + 1) .. "!"
                         ))
-
-                        Timer.tween(0.5, {
-                            [self.battleState.playerExpBar] = {value = self.playerPokemon.currentExp - self.playerPokemon.expToLevel}
-                        })
-                        :finish(function()
-                            gStateStack:push(LevelUpState(self.battleState))
-                        end)
+                        gStateStack:push(LevelUpState(self.battleState))
                     else
                         self:fadeOutWhite()
                     end

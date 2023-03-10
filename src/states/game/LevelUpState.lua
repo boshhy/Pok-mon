@@ -14,6 +14,16 @@ function LevelUpState:init(battleState)
     self.battleState = battleState
     self.playerPokemon = self.battleState.player.party.pokemon[1]
 
+    local levelPlusOne = self.playerPokemon.level + 1
+    local expToLevel = levelPlusOne * levelPlusOne * 5 * 0.75
+
+    self.battleState.playerExpBar.max = expToLevel
+    self.battleState.playerExpBar.value = 0
+    
+    Timer.tween(0.5, {
+        [self.battleState.playerExpBar] = {value = self.playerPokemon.currentExp - self.playerPokemon.expToLevel}
+    })
+
     hp, attack, defense, speed = self.playerPokemon:getStats()
     self.playerPokemon.currentExp = self.playerPokemon.currentExp - self.playerPokemon.expToLevel
     HPIncrease, attackIncrease, defenseIncrease, speedIncrease = self.playerPokemon:levelUp()

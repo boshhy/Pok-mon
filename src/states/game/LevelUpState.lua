@@ -19,17 +19,15 @@ function LevelUpState:init(battleState)
     HPIncrease, attackIncrease, defenseIncrease, speedIncrease = self.playerPokemon:levelUp()
     
     self.levelUpMenu = Menu {
-        x = 16,
-        y = 16,
-        width = 300,
-        height = 128,
+        x = VIRTUAL_WIDTH - 200,
+        y = VIRTUAL_HEIGHT - 208,
+        width = 192,
+        height = 112,
         showCursor = false,
         items = {
             {
                 text = 'HP: ' ..tostring(hp) .. " + " ..tostring(HPIncrease) .. ' = ' ..tostring(self.playerPokemon.HP),
                 onSelect = function()
-                    -- pop level up menu
-                    gStateStack:pop()
 
                     gStateStack:push(FadeInState({
                         r = 1, g = 1, b = 1}, 1, 
@@ -37,6 +35,9 @@ function LevelUpState:init(battleState)
                             -- resume field music
                             gSounds['victory-music']:stop()
                             gSounds['field-music']:play()
+
+                            -- pop level up menu
+                            gStateStack:pop()
 
                             -- pop take turn state
                             gStateStack:pop()

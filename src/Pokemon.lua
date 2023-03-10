@@ -101,3 +101,11 @@ function Pokemon:levelUp()
 
     return self:statsLevelUp()
 end
+
+function Pokemon:getStats()
+    local hp = self.HP
+    local attack = self.attack
+    local defense = self.defense
+    local speed = self.speed
+    return hp, attack, defense, speed
+end

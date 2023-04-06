@@ -206,9 +206,11 @@ function TakeTurnState:victory()
 
                     -- level up if we've gone over the needed amount
                     if self.playerPokemon.currentExp > self.playerPokemon.expToLevel then
+                        -- Show a message that the pokemon level up, shows what level the pokemon reached
                         gStateStack:push(BattleMessageState(
                                 '' ..tostring(self.playerPokemon.name) .. ' Grew to Level ' .. tostring(self.playerPokemon.level + 1) .. "!"
                         ))
+                        -- Add the level up state to the stack
                         gStateStack:push(LevelUpState(self.battleState))
                     else
                         self:fadeOutWhite()

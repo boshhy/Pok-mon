@@ -25,11 +25,12 @@ function Selection:init(def)
     self.gapHeight = self.height / #self.items
 
     self.currentSelection = 1
-
+    -- Decides to show cursor (boolean)
     self.showCursor = def.showCursor
 end
 
 function Selection:update(dt)
+    -- If we are showing cursur give option to select
     if self.showCursor then
         if love.keyboard.wasPressed('up') then
             if self.currentSelection == 1 then
@@ -68,6 +69,7 @@ function Selection:render()
     for i = 1, #self.items do
         local paddedY = currentY + (self.gapHeight / 2) - self.font:getHeight() / 2
 
+        -- Draw cursor selction if showcursor is true
         if self.showCursor then
             -- draw selection marker if we're at the right index
             if i == self.currentSelection then

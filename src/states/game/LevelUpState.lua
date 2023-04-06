@@ -2,8 +2,8 @@
     GD50
     Pokemon
 
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
+    Author: Ivan Almaraz
+    Level Up pokemon and display new stats
 ]]
 
 LevelUpState = Class{__includes = BaseState}
@@ -24,15 +24,19 @@ function LevelUpState:init(battleState)
         [self.battleState.playerExpBar] = {value = self.playerPokemon.currentExp - self.playerPokemon.expToLevel}
     })
 
+    -- Get current stats of pokemon before level up
     hp, attack, defense, speed = self.playerPokemon:getStats()
     self.playerPokemon.currentExp = self.playerPokemon.currentExp - self.playerPokemon.expToLevel
+    -- Get how much the stats changed by
     HPIncrease, attackIncrease, defenseIncrease, speedIncrease = self.playerPokemon:levelUp()
     
+    -- Show a menu for level up stats with no cursor
     self.levelUpMenu = Menu {
         x = VIRTUAL_WIDTH - 200,
         y = VIRTUAL_HEIGHT - 208,
         width = 192,
         height = 112,
+        -- Do not show cursor
         showCursor = false,
         items = {
             {

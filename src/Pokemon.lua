@@ -102,6 +102,7 @@ function Pokemon:levelUp()
     return self:statsLevelUp()
 end
 
+-- returns the stats of the pokemon
 function Pokemon:getStats()
     local hp = self.HP
     local attack = self.attack

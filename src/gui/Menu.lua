@@ -21,6 +21,7 @@ function Menu:init(def)
         y = def.y,
         width = def.width,
         height = def.height,
+        -- Decided to show cursor (boolean)
         showCursor = def.showCursor
     }
 end

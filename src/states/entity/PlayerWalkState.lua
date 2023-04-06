@@ -25,7 +25,6 @@ function PlayerWalkState:checkForEncounter()
     local x, y = self.entity.mapX, self.entity.mapY
 
     -- chance to go to battle if we're walking into a grass tile, else move as normal
-    -- TODO Change back to 1 in 10 chance
     if self.level.grassLayer.tiles[y][x].id == TILE_IDS['tall-grass'] and math.random(10) == 1 then
         self.entity:changeState('idle')
 
